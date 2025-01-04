@@ -1,0 +1,26 @@
+import pandas as pd
+import numpy as np
+
+# Create a DataFrame with random values
+np.random.seed(42)  # For reproducibility
+data = np.random.randn(10, 4)  # 10 rows, 4 columns
+
+# Create the DataFrame
+df = pd.DataFrame(data, columns=['A', 'B', 'C', 'D'])
+
+# Function to apply black background and yellow font
+def style_black_background_yellow_font(dataframe):
+    return dataframe.style.set_properties(**{
+        'background-color': 'black',
+        'color': 'yellow'
+    })
+
+# Apply the styling
+styled_df = style_black_background_yellow_font(df)
+
+# Display the styled DataFrame
+# If running in Jupyter Notebook, use this to view:
+# styled_df
+
+print("Original DataFrame:")
+print(df)

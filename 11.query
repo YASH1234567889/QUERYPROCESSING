@@ -1,0 +1,28 @@
+import pandas as pd
+import numpy as np
+
+# Create a DataFrame with random values
+np.random.seed(42)  # For reproducibility
+data = np.random.randn(10, 4)  # 10 rows, 4 columns
+
+# Create a DataFrame
+df = pd.DataFrame(data, columns=['A', 'B', 'C', 'D'])
+
+# Introduce NaN values at specific positions
+nan_positions = [(0, 2), (3, 3), (4, 1), (9, 3)]
+for row, col in nan_positions:
+    df.iat[row, col] = np.nan
+
+# Function to highlight NaN values in red
+def highlight_nan_red(s):
+    return ['background-color: red' if pd.isna(v) else '' for v in s]
+
+# Apply the highlighting function to the DataFrame
+highlighted_df = df.style.apply(highlight_nan_red, axis=1)
+
+# Display the original and styled DataFrame
+print("Original DataFrame:")
+print(df)
+
+# To visualize the styled DataFrame, use this in a Jupyter Notebook:
+# highlighted_df
